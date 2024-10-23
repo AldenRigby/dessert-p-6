@@ -4,6 +4,9 @@ class DessertItem:
 
     def __str__(self):
         return f"Dessert: {self.name}"
+    
+    def awef(self):
+        return self.name
 
 class Candy(DessertItem):
     def __init__(self, name, candyWeight, pricePerPound):
