@@ -4,9 +4,6 @@ class DessertItem:
 
     def __str__(self):
         return f"Dessert: {self.name}"
-    
-    def awef(self):
-        return self.name
 
 class Candy(DessertItem):
     def __init__(self, name, candyWeight, pricePerPound):
@@ -18,7 +15,7 @@ class Cookie(DessertItem):
     def __init__(self, name, cookieQuantity, pricePerDozen):
         super().__init__(name)
         self.cookieQuantity = cookieQuantity
-        self.pricePerPound = pricePerDozen
+        self.pricePerDozen = pricePerDozen
 
 class IceCream(DessertItem):
     def __init__(self, name, scoopCount, pricePerScoop):
@@ -31,6 +28,3 @@ class Sundae(IceCream):
         super().__init__(name, scoopCount, pricePerScoop)
         self.toppingName = toppingName
         self.toppingPrice = toppingPrice
-
-awef = Sundae("skittle", 100, 1, "awef", 3243)
-print(awef)
