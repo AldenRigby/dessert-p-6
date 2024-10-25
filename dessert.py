@@ -1,9 +1,17 @@
+class Order:
+    def __init__(self, order = []):
+        self.order = order
+
+    def add(self, item):
+        self.order.append(item)
+        return self.order
+
 class DessertItem:
     def __init__(self, name):
         self.name = name
 
     def __str__(self):
-        return f"Dessert: {self.name}"
+        return f"{self.name}"
 
 class Candy(DessertItem):
     def __init__(self, name, candyWeight, pricePerPound):
