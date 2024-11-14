@@ -1,4 +1,5 @@
 from dessert import Order, DessertItem, Candy, Cookie, IceCream, Sundae
+from receipt import make_receipt
 def main():
     mainOrder = Order()
     mainOrder.add(Candy("Candy Corn", 1.5, .25))
@@ -10,5 +11,5 @@ def main():
     for i in mainOrder.order:
         print(i)
     print("Items in order: " + str(len(mainOrder.order)))
-
+    print(mainOrder.order_cost())
 main()
