@@ -41,7 +41,7 @@ class Candy(DessertItem):
         self.pricePerPound = pricePerPound
     
     def calculate_cost(self):
-        return self.pricePerPound
+        return round(self.candyWeight * self.pricePerPound, 2)
 
 class Cookie(DessertItem):
     def __init__(self, name, cookieQuantity, pricePerDozen):
@@ -50,7 +50,7 @@ class Cookie(DessertItem):
         self.pricePerDozen = pricePerDozen
     
     def calculate_cost(self):
-        return self.pricePerDozen
+        return round(self.cookieQuantity * self.pricePerDozen / 12, 2)
 
 class IceCream(DessertItem):
     def __init__(self, name, scoopCount, pricePerScoop):
@@ -59,7 +59,7 @@ class IceCream(DessertItem):
         self.pricePerScoop = pricePerScoop
     
     def calculate_cost(self):
-        return self.pricePerScoop
+        return round(self.scoopCount * self.pricePerScoop, 2) 
 
 class Sundae(IceCream):
     def __init__(self, name, scoopCount, pricePerScoop, toppingName, toppingPrice):
@@ -68,5 +68,5 @@ class Sundae(IceCream):
         self.toppingPrice = toppingPrice
     
     def calculate_cost(self):
-        return self.pricePerScoop + self.toppingPrice
+        return round(self.scoopCount * (self.pricePerScoop + self.toppingPrice), 2)
 
