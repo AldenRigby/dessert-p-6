@@ -5,6 +5,89 @@ from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4 
 from reportlab.lib.styles import getSampleStyleSheet 
 
+class DessertShop():
+    def __init__(self):
+        pass
+    def user_prompt_candy(self):
+        name = input("What is the name of your candy?")
+        weight = 0
+        while True:
+            try:
+                weight = float(input("How much does your candy weigh in pounds?"))
+                break
+            except:
+                print("Please enter a valid weight.")
+        price = 0
+        while True:
+            try:
+                price = float(input("How much does your candy cost per pound?"))
+                break
+            except:
+                print("Please enter a valid price.")
+        return Candy(name, weight, price)
+    
+    def user_prompt_cookie(self):
+        name = input("What is the name of your cookie?")
+        num = 0
+        while True:
+            try:
+                num = int(input("How many cookies do you have?"))
+                break
+            except:
+                print("Please enter a valid number.")
+        price = 0
+        while True:
+            try:
+                price = float(input("How much do your cookies cost per dozen?"))
+                break
+            except:
+                print("Please enter a valid price.")
+        return Cookie(name, num, price)
+    
+    def user_prompt_icecream(self):
+        name = input("What is the name of your ice cream?")
+        scoops = 0
+        while True:
+            try:
+                scoops = int(input("How many scoops of ice cream do you have?"))
+                break
+            except:
+                print("Please enter a valid number.")
+        price = 0
+        while True:
+            try:
+                price = float(input("How much does your ice cream cost per scoop?"))
+                break
+            except:
+                print("Please enter a valid price.")
+        return IceCream(name, scoops, price)
+    
+    def user_prompt_sundae(self):
+        name = input("What is the name of your ice cream?")
+        scoops = 0
+        while True:
+            try:
+                scoops = int(input("How many scoops of ice cream do you have?"))
+                break
+            except:
+                print("Please enter a valid number.")
+        price = 0
+        while True:
+            try:
+                price = float(input("How much does your ice cream cost per scoop?"))
+                break
+            except:
+                print("Please enter a valid price.")
+        topping = input("What is the name of your topping?")
+        toppingPrice = 0
+        while True:
+            try:
+                toppingPrice = float(input("How much does your topping cost per scoop?"))
+                break
+            except:
+                print("Please enter a valid number.")
+        return Sundae(name, scoops, price, topping, toppingPrice)
+
 def make_receipt(data, out_file_name=""):
     tempData = [["Name", "Item Cost", "Tax" ]]
     for i in data.order:
@@ -15,7 +98,6 @@ def make_receipt(data, out_file_name=""):
     tempData.append(["Order Subtotals", data.order_cost(), data.order_tax()])
     tempData.append(["Order Total", "", round(data.order_cost() + data.order_tax(), 2)])
     tempData.append(["Total Items", "", str(len(data.order))])
-    make_receipt(tempData, "receipt.pdf")
 
     pdf = SimpleDocTemplate( out_file_name, pagesize = A4 ) 
     styles = getSampleStyleSheet() 
@@ -33,16 +115,59 @@ def make_receipt(data, out_file_name=""):
         ] 
     ) 
     
-    table = Table( data , style = style ) 
-    pdf.build([ title , table ])  
+    table = Table( tempData , style = style ) 
+    pdf.build([ title , table ]) 
+    print(table)
 
 def main():
-    mainOrder = Order()
-    mainOrder.add(Candy("Candy Corn", 1.5, .25))
-    mainOrder.add(Candy("Gummy Bears", .25, .35))
-    mainOrder.add(Cookie("Chocolate Chip", 6, 3.99))
-    mainOrder.add(IceCream("Pistachio", 2, .79))
-    mainOrder.add(Sundae("Vanilla", 3, .69, "Hot Fudge", 1.29))
-    mainOrder.add(Cookie("Oatmeal Raisin", 2, 3.45))
+    shop = DessertShop()
+    order = Order()
+    '''
+    order.add(Candy('Candy Corn', 1.5, 0.25))
+    order.add(Candy('Gummy Bears', 0.25, 0.35))
+    order.add(Cookie('Chocolate Chip', 6, 3.99))
+    order.add(IceCream('Pistachio', 2, 0.79))
+    order.add(Sundae('Vanilla', 3, 0.69, 'Hot Fudge', 1.29))
+    order.add(Cookie('Oatmeal Raisin', 2, 3.45))
+    '''
+    # boolean done = false
+    done: bool = False
+    # build the prompt string once
+    prompt = '\n'.join([ '\n',
+    '1: Candy',
+    '2: Cookie',
+    '3: Ice Cream',
+    '4: Sunday',
+    '\nWhat would you like to add to the order? (1-4, Enter for done): '
+    ])
+    while not done:
+        choice = input(prompt)
+        match choice:
+            case '':
+                done = True
+            case '1':
+                item = shop.user_prompt_candy()
+                order.add(item)
+                print(f'{item.name} has been added to your order.')
+            case '2':
+                item = shop.user_prompt_cookie()
+                order.add(item)
+                print(f'{item.name} has been added to your order.')
+            case '3':
+                item = shop.user_prompt_icecream()
+                order.add(item)
+                print(f'{item.name} has been added to your order.')
+            case '4':
+                item = shop.user_prompt_sundae()
+                order.add(item)
+                print(f'{item.name} has been added to your order.')
+            case _:
+                print('Invalid response: Please enter a choice from the menu (1-4) or Enter')
+    print()
+
+    for i in order.order:
+        print(i)
+    make_receipt(order, "receipt.pdf")
+
 
 main()
