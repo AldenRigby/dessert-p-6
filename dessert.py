@@ -39,6 +39,9 @@ class Candy(DessertItem):
         super().__init__(name)
         self.candyWeight = candyWeight
         self.pricePerPound = pricePerPound
+
+    def __str__(self): #copy and paste this .................
+        return f"{self.name}, {self.candyWeight}lbs, ${self.pricePerPound}/lb, ${self.calculate_cost}, ${self.calculate_tax}"
     
     def calculate_cost(self):
         return round(self.candyWeight * self.pricePerPound, 2)

@@ -169,5 +169,7 @@ def main():
         print(i)
     make_receipt(order, "receipt.pdf")
 
+    print(order)
+
 
 main()
