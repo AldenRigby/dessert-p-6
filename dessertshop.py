@@ -9,18 +9,18 @@ class DessertShop():
     def __init__(self):
         pass
     def user_prompt_candy(self):
-        name = input("What is the name of your candy?")
+        name = input("What is the name of your candy? ")
         weight = 0
         while True:
             try:
-                weight = float(input("How much does your candy weigh in pounds?"))
+                weight = float(input("How much does your candy weigh in pounds? "))
                 break
             except:
                 print("Please enter a valid weight.")
         price = 0
         while True:
             try:
-                price = float(input("How much does your candy cost per pound?"))
+                price = float(input("How much does your candy cost per pound? "))
                 break
             except:
                 print("Please enter a valid price.")
@@ -31,50 +31,50 @@ class DessertShop():
         num = 0
         while True:
             try:
-                num = int(input("How many cookies do you have?"))
+                num = int(input("How many cookies do you have? "))
                 break
             except:
                 print("Please enter a valid number.")
         price = 0
         while True:
             try:
-                price = float(input("How much do your cookies cost per dozen?"))
+                price = float(input("How much do your cookies cost per dozen? "))
                 break
             except:
                 print("Please enter a valid price.")
         return Cookie(name, num, price)
     
     def user_prompt_icecream(self):
-        name = input("What is the name of your ice cream?")
+        name = input("What is the name of your ice cream? ")
         scoops = 0
         while True:
             try:
-                scoops = int(input("How many scoops of ice cream do you have?"))
+                scoops = int(input("How many scoops of ice cream do you have? "))
                 break
             except:
                 print("Please enter a valid number.")
         price = 0
         while True:
             try:
-                price = float(input("How much does your ice cream cost per scoop?"))
+                price = float(input("How much does your ice cream cost per scoop? "))
                 break
             except:
                 print("Please enter a valid price.")
         return IceCream(name, scoops, price)
     
     def user_prompt_sundae(self):
-        name = input("What is the name of your ice cream?")
+        name = input("What is the name of your ice cream? ")
         scoops = 0
         while True:
             try:
-                scoops = int(input("How many scoops of ice cream do you have?"))
+                scoops = int(input("How many scoops of ice cream do you have? "))
                 break
             except:
                 print("Please enter a valid number.")
         price = 0
         while True:
             try:
-                price = float(input("How much does your ice cream cost per scoop?"))
+                price = float(input("How much does your ice cream cost per scoop? "))
                 break
             except:
                 print("Please enter a valid price.")
@@ -82,7 +82,7 @@ class DessertShop():
         toppingPrice = 0
         while True:
             try:
-                toppingPrice = float(input("How much does your topping cost per scoop?"))
+                toppingPrice = float(input("How much does your topping cost per scoop? "))
                 break
             except:
                 print("Please enter a valid number.")
@@ -117,7 +117,6 @@ def make_receipt(data, out_file_name=""):
     
     table = Table( tempData , style = style ) 
     pdf.build([ title , table ]) 
-    print(table)
 
 def main():
     shop = DessertShop()
@@ -165,8 +164,6 @@ def main():
                 print('Invalid response: Please enter a choice from the menu (1-4) or Enter')
     print()
 
-    for i in order.order:
-        print(i)
     make_receipt(order, "receipt.pdf")
 
     print(order)
