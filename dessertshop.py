@@ -92,7 +92,7 @@ def make_receipt(data, out_file_name=""):
     tempData = [["Name", "Item Cost", "Tax" ]]
     for i in data.order:
         tempData.append([])
-        tempData[-1].append(str(i))
+        tempData[-1].append(f"{i.name} ({i.packaging})")
         tempData[-1].append(i.calculate_cost())
         tempData[-1].append(i.calculate_tax())
     tempData.append(["Order Subtotals", data.order_cost(), data.order_tax()])
